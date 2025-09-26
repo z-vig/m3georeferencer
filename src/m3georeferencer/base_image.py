@@ -16,9 +16,13 @@ from .custom_types import PathLike
 @dataclass
 class BaseImage:
     path: PathLike
-    crs: CRS
-    bbox: BoundingBox
+    crs: str | CRS
+    bbox: Tuple[float, float, float, float] | BoundingBox
     geotransform: Sequence[float] = (0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
+
+    def __post_init__(self):
+        self.bbox = BoundingBox(*self.bbox)
+        self.crs = CRS.from_wkt(self.crs)
 
 
 # Gruithuisen Domes: -41.4, 35.3, -38.9, 37.6
