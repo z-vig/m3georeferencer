@@ -1,0 +1,20 @@
+[project]
+name = "m3georeferencer"
+version = "0.1.0"
+description = "Georeferencing GUI built for Moon Mineralogy Mapper data"
+authors = [
+    {name = "Z.M. Vig",email = "zvig@umd.edu"}
+]
+license = {text = "LICENSE"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy (>2.2)",
+    "rasterio (>=1.4.3,<2.0.0)",
+    "matplotlib (>=3.10.6,<4.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

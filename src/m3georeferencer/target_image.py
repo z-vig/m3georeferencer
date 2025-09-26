@@ -75,3 +75,34 @@ class TargetImage:
                 f"when the row offset {self.row_offset} is "
                 "applied."
             )
+
+
+def open_target(target_image: TargetImage) -> np.ndarray:
+    """
+    Applies row and column offsets to Target Image data attribute and returns
+    the resulting array.
+
+    Parameters
+    ----------
+    target_image: TargetImage
+        TargetImage object that will be georeferenced by pixking GCPs.
+
+    Returns
+    -------
+    arr: np.ndarray
+    """
+    if target_image.data.ndim == 2:
+        target_image.data = target_image.data[:, :, np.newaxis]
+
+    col_off = target_image.col_offset
+    row_off = target_image.row_offset
+    width = target_image.width
+    height = target_image.height
+
+    arr = target_image.data[
+        row_off : row_off + height,  # noqa
+        col_off : col_off + width,  # noqa
+        target_image.band,
+    ]
+
+    return arr
