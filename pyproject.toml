@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-m3georeferencer = "m3georeferencer.main:main"
+m3georeferencer = "m3georeferencer.cli:main"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

@@ -3,6 +3,8 @@ from tkinter.filedialog import asksaveasfilename
 
 # Dependencies
 import arguably
+import matplotlib.pyplot as plt
+import matplotlib
 
 # Relative Imports
 from .read_m3 import read_m3
@@ -11,13 +13,15 @@ from .base_image import BaseImage
 
 from .georeferencer import Georeferencer
 
+matplotlib.use("QtAgg")
+
 
 @arguably.command
-def main(
+def georef(
     data: str,
     hdr: str,
     *,
-    basemap: str = "./basemap.img",
+    basemap: str = "./basemap.tif",
     left_bound: float = -22.1,
     right_bound: float = -3.4,
     bottom_bound: float = 4.8,
@@ -57,11 +61,12 @@ def main(
     )
 
     save_path = asksaveasfilename(
-        title="Select location to save Ground Control Points."
+        title="Select location to save Ground Control Points.",
+        filetypes=[("gcps", ".gcps")],
     )
-    Georeferencer(target, base, save_path)
+    Georeferencer(target, base, save_path, overwrite_save=True)
+    plt.show()
 
 
-if __name__ == "__main__":
+def main():
     arguably.run()
-    # arguably.run(name="test", version_flag=True, config_flag())
