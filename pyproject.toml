@@ -1,6 +1,6 @@
 [project]
 name = "m3georeferencer"
-version = "0.1.0"
+version = "0.1.2"
 description = "Georeferencing GUI built for Moon Mineralogy Mapper data"
 authors = [
     {name = "Z.M. Vig",email = "zvig@umd.edu"}
@@ -11,7 +11,9 @@ requires-python = ">=3.13"
 dependencies = [
     "numpy (>2.2)",
     "rasterio (>=1.4.3,<2.0.0)",
-    "matplotlib (>=3.10.6,<4.0.0)"
+    "matplotlib (>=3.10.6,<4.0.0)",
+    "arguably (>=1.3.0)",
+    "PyQt6 (>6.9)"
 ]
 
 [project.scripts]
