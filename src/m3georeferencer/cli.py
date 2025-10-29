@@ -1,5 +1,6 @@
 # Standard Libraries
 from tkinter.filedialog import asksaveasfilename
+from pathlib import Path
 
 # Dependencies
 import arguably
@@ -19,7 +20,6 @@ matplotlib.use("QtAgg")
 @arguably.command
 def georef(
     data: str,
-    hdr: str,
     *,
     basemap: str = "./basemap.tif",
     left_bound: float = -22.1,
@@ -47,7 +47,7 @@ def georef(
         width: [-W] Width of the M3 image in the visualizer.
         height: [-H] Height of the M3 image in the visualizer.
     """
-    m3_arr = read_m3(data, hdr)
+    m3_arr = read_m3(data, Path(data).with_suffix(".HDR"))
     print(f"Using an M3 image of size: {m3_arr.shape}")
     target = TargetImage(
         m3_arr, row_offset, col_offset, width, height, src_path=data
